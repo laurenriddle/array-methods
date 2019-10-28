@@ -297,6 +297,7 @@ Lightning Exercise 1: Refactor your code to search for purchasing agents instead
 /* 
 Lightning Exercise 2: Refactor your code so that if the search text is found in the first name, or last name, of any purchasing agent, show that agent. 
 */
+
 const outEl = document.querySelector("#output")
 outEl.innerHTML += "<h1>Search Results</h1>"
 
@@ -305,12 +306,23 @@ document.querySelector("#companySearch")
         if (keyPressEvent.charCode === 13) {
             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
             const foundBusiness = businesses.find(
-                business =>
-                    business.purchasingAgent.nameFirst.toLowerCase().includes(keyPressEvent.target.value)
-            );
+                business => {
+                    const agentFirst = business.purchasingAgent.nameFirst
+                    const agentLast = business.purchasingAgent.nameLast
+                    const input = keyPressEvent.target.value
+                    return agentFirst.includes(input) || agentLast.includes(input)
+                });
 
             outEl.innerHTML = `
-                <h2>${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}</h2>
+                <h2>
+                ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
+                </h2>
+                <section>
+                ${foundBusiness.companyName}
+                </section>
                 `;
         }
     });
+
+
+
