@@ -139,4 +139,18 @@ const newYorkBusinesses = businesses.filter(business => {
     return inNewYork
   })
 
-  console.log(newYorkBusinesses)
+  newYorkBusinesses.forEach(business => {
+    const zipcodeKey = "addressZipCode"
+    outEl.innerHTML += `
+    <h2>${business.companyName}</h2>
+    <section>
+      ${business.addressFullStreet}
+    </section>
+    <section>
+      ${business.addressCity}, ${business["addressStateCode"]}, ${business[zipcodeKey]}
+    </section>
+  `
+    outEl.innerHTML += "<hr/>"
+});
+
+//   console.log(newYorkBusinesses)
