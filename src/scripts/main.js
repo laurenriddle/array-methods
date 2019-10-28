@@ -111,6 +111,8 @@ const businesses = [
     }
 ];
 
+
+// FOREACH METHOD
 // const outEl = document.querySelector("#output")
 // outEl.innerHTML = "<h1>Active Businesses</h1>"
 
@@ -135,7 +137,7 @@ Lightning Exercise: Add another section sibling to the current one and use objec
 
 
 
-
+// FILTER METHOD
 /* 
 CLASS EXERCISE: Array to contain all the New York businesses, and foreach to display them on the DOM.
 */
@@ -187,7 +189,7 @@ Lightning Exercise: Use filter() to create another array named manufacturingBusi
 
 
 
-
+// MAP METHOD
 /* 
 CLASS EXERCISE: Using map(), you extract the purchasing agent object from each business and store it in a new array. Then display those agents on the DOM.
 */
@@ -230,6 +232,7 @@ CLASS EXERCISE: Using map(), you extract the purchasing agent object from each b
 
 
 
+// FIND METHOD
 /* 
 CLASS CODE: this is the code from class chapter 
 */
@@ -298,31 +301,90 @@ Lightning Exercise 1: Refactor your code to search for purchasing agents instead
 Lightning Exercise 2: Refactor your code so that if the search text is found in the first name, or last name, of any purchasing agent, show that agent. 
 */
 
+// const outEl = document.querySelector("#output")
+// outEl.innerHTML += "<h1>Search Results</h1>"
+
+// document.querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             const foundBusiness = businesses.find(
+//                 business => {
+//                     const agentFirst = business.purchasingAgent.nameFirst
+//                     const agentLast = business.purchasingAgent.nameLast
+//                     const input = keyPressEvent.target.value
+//                     return agentFirst.includes(input) || agentLast.includes(input)
+//                 });
+
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
+//                 </h2>
+//                 <section>
+//                 ${foundBusiness.companyName}
+//                 </section>
+//                 `;
+//         }
+//     });
+
+
+
+
+
+
+// REDUCE METHOD
+
+/* 
+Lightning Exercise 1: Use the reduce method on the following array to determine how much total rain fell last month.
+*/
+
+// const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
+
+// const totalRainfall = monthlyRainfall.reduce((total, currentNumber) => total += currentNumber)
+
+// console.log(totalRainfall)
+
+
+/*
+Lightning Exercise 2: Use the reduce method on the following array to build a sentence.
+*/
+
+// const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+
+// const theSentence = words.reduce((sentence, currentWord) => sentence += ` ${currentWord}`)
+
+// console.log(theSentence)
+
+
+
+
+/* 
+CLASS EXERCISE: This adds the total Orders for each business 
+*/
 const outEl = document.querySelector("#output")
-outEl.innerHTML += "<h1>Search Results</h1>"
+outEl.innerHTML += "<h1>Businesses</h1>"
 
-document.querySelector("#companySearch")
-    .addEventListener("keypress", keyPressEvent => {
-        if (keyPressEvent.charCode === 13) {
-            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            const foundBusiness = businesses.find(
-                business => {
-                    const agentFirst = business.purchasingAgent.nameFirst
-                    const agentLast = business.purchasingAgent.nameLast
-                    const input = keyPressEvent.target.value
-                    return agentFirst.includes(input) || agentLast.includes(input)
-                });
-
-            outEl.innerHTML = `
-                <h2>
-                ${foundBusiness.purchasingAgent.nameFirst} ${foundBusiness.purchasingAgent.nameLast}
-                </h2>
-                <section>
-                ${foundBusiness.companyName}
-                </section>
-                `;
-        }
-    });
+businesses.forEach(business => {
+    /* CALCULATE ORDER SUMMARY */
+    let totalOrders = business.orders.reduce(
+        (currentTotal, nextValue) => currentTotal += nextValue,
+        0
+    )
 
 
-
+    outEl.innerHTML += `
+        <h2>
+            ${business.companyName}
+            ($${totalOrders.toFixed(2)})
+        </h2>
+        <section>
+            ${business.addressFullStreet}
+        </section>
+        <section>
+            ${business.addressCity},
+            ${business.addressStateCode}
+            ${business.addressZipCode}
+        </section>
+    `;
+    outEl.innerHTML += "<hr/>";
+});
