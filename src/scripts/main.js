@@ -115,6 +115,7 @@ const outEl = document.querySelector("#output")
 outEl.innerHTML = "<h1>Active Businesses</h1>"
 
 businesses.forEach(business => {
+    const zipcodeKey = "addressZipCode"
     console.log(businesses)
     outEl.innerHTML += `
     <h2>${business.companyName}</h2>
@@ -122,7 +123,7 @@ businesses.forEach(business => {
       ${business.addressFullStreet}
     </section>
     <section>
-      ${business.addressCity}
+      ${business.addressCity}, ${business["addressStateCode"]}, ${business[zipcodeKey]}
     </section>
   `
     outEl.innerHTML += "<hr/>"
