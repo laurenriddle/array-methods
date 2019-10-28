@@ -114,7 +114,63 @@ const businesses = [
 const outEl = document.querySelector("#output")
 outEl.innerHTML = "<h1>Active Businesses</h1>"
 
-businesses.forEach(business => {
+/* 
+Lightning Exercise: Add another section sibling to the current one and use object dot notation to display each company's city. Use square bracket notation to display the state code. Use dynamic square bracket notation to add the zip code. 
+*/
+
+// businesses.forEach(business => {
+//     const zipcodeKey = "addressZipCode"
+//     outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//     <section>
+//       ${business.addressCity}, ${business["addressStateCode"]}, ${business[zipcodeKey]}
+//     </section>
+//   `
+//     outEl.innerHTML += "<hr/>"
+// });
+
+
+
+
+
+/* 
+CLASS EXERCISE: Array to contain all the New York businesses, and foreach to display them on the DOM.
+*/
+
+// const newYorkBusinesses = businesses.filter(business => {
+//     let inNewYork = false
+  
+//     if (business.addressStateCode === "NY") {
+//         inNewYork = true
+//     }
+  
+//     return inNewYork
+//   })
+
+// console.log(newYorkBusinesses)
+
+
+
+
+
+/* 
+Lightning Exercise: Use filter() to create another array named manufacturingBusinesses that will contain all businesses in the manufacturing industry. Display those to the DOM. 
+*/
+
+const manufacturingBusinesses = businesses.filter(business => {
+    let manufacturing = false
+  
+    if (business.companyIndustry === "Manufacturing") {
+        manufacturing = true
+    }
+  
+    return manufacturing
+  })
+
+  manufacturingBusinesses.forEach(business => {
     const zipcodeKey = "addressZipCode"
     outEl.innerHTML += `
     <h2>${business.companyName}</h2>
@@ -127,3 +183,4 @@ businesses.forEach(business => {
   `
     outEl.innerHTML += "<hr/>"
 });
+
