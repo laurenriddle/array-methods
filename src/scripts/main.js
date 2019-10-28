@@ -112,7 +112,7 @@ const businesses = [
 ];
 
 const outEl = document.querySelector("#output")
-outEl.innerHTML = "<h1>Active Businesses</h1>"
+// outEl.innerHTML = "<h1>Active Businesses</h1>"
 
 /* 
 Lightning Exercise: Add another section sibling to the current one and use object dot notation to display each company's city. Use square bracket notation to display the state code. Use dynamic square bracket notation to add the zip code. 
@@ -160,27 +160,50 @@ CLASS EXERCISE: Array to contain all the New York businesses, and foreach to dis
 Lightning Exercise: Use filter() to create another array named manufacturingBusinesses that will contain all businesses in the manufacturing industry. Display those to the DOM. 
 */
 
-const manufacturingBusinesses = businesses.filter(business => {
-    let manufacturing = false
+// const manufacturingBusinesses = businesses.filter(business => {
+//     let manufacturing = false
   
-    if (business.companyIndustry === "Manufacturing") {
-        manufacturing = true
-    }
+//     if (business.companyIndustry === "Manufacturing") {
+//         manufacturing = true
+//     }
   
-    return manufacturing
-  })
+//     return manufacturing
+//   })
 
-  manufacturingBusinesses.forEach(business => {
-    const zipcodeKey = "addressZipCode"
-    outEl.innerHTML += `
-    <h2>${business.companyName}</h2>
-    <section>
-      ${business.addressFullStreet}
-    </section>
-    <section>
-      ${business.addressCity}, ${business["addressStateCode"]}, ${business[zipcodeKey]}
-    </section>
-  `
-    outEl.innerHTML += "<hr/>"
+//   manufacturingBusinesses.forEach(business => {
+//     const zipcodeKey = "addressZipCode"
+//     outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//     <section>
+//       ${business.addressCity}, ${business["addressStateCode"]}, ${business[zipcodeKey]}
+//     </section>
+//   `
+//     outEl.innerHTML += "<hr/>"
+// });
+
+
+
+
+/* 
+CLASS EXERCISE: Using map(), you extract the purchasing agent object from each business and store it in a new array. Then display those agents on the DOM.
+*/
+outEl.innerHTML += "<h1>Purchasing Agents</h1>";
+
+/*
+    Using map(), you extract the purchasing agent object
+    from each business and store it in a new array
+*/
+const agents = businesses.map(business => {
+    return business.purchasingAgent
+})
+
+console.table(agents)
+
+agents.forEach(agent => {
+  outEl.innerHTML += `<h2>${agent.nameFirst} ${agent.nameLast}</h2>`;
+  outEl.innerHTML += "<hr/>";
 });
 
