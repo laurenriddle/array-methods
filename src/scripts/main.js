@@ -116,7 +116,6 @@ outEl.innerHTML = "<h1>Active Businesses</h1>"
 
 businesses.forEach(business => {
     const zipcodeKey = "addressZipCode"
-    console.log(businesses)
     outEl.innerHTML += `
     <h2>${business.companyName}</h2>
     <section>
