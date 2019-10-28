@@ -142,11 +142,11 @@ CLASS EXERCISE: Array to contain all the New York businesses, and foreach to dis
 
 // const newYorkBusinesses = businesses.filter(business => {
 //     let inNewYork = false
-  
+
 //     if (business.addressStateCode === "NY") {
 //         inNewYork = true
 //     }
-  
+
 //     return inNewYork
 //   })
 
@@ -162,11 +162,11 @@ Lightning Exercise: Use filter() to create another array named manufacturingBusi
 
 // const manufacturingBusinesses = businesses.filter(business => {
 //     let manufacturing = false
-  
+
 //     if (business.companyIndustry === "Manufacturing") {
 //         manufacturing = true
 //     }
-  
+
 //     return manufacturing
 //   })
 
@@ -191,32 +191,38 @@ Lightning Exercise: Use filter() to create another array named manufacturingBusi
 CLASS EXERCISE: Using map(), you extract the purchasing agent object from each business and store it in a new array. Then display those agents on the DOM.
 */
 
-/* Lightning Exercise: Instead of just returning the purchasing agent object, return a new object that has the full name of the purchasing agent, the company name, and the phone number. The data structure is shown below. Use that new data structure to display the agent with their company and phone number */
 
 
 outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 
 /*
-    Using map(), you extract the purchasing agent object
-    from each business and store it in a new array
+Using map(), you extract the purchasing agent object
+from each business and store it in a new array
 */
+
 const agents = businesses.map(business => {
-    let objects = {
-        "fullName": business.purchasingAgent,
+
+    // return business.purchasingAgent
+
+    /* 
+    Lightning Exercise: Instead of just returning the purchasing agent object, return a new object that has the full name of the purchasing agent, the company name, and the phone number. The data structure is shown below. Use that new data structure to display the agent with their company and phone number 
+    */
+    let agentObject = {
+        "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
         "company": business.companyName,
         "phoneNumber": business.phoneWork
     }
-    return objects
+    return agentObject
 })
 
 // console.table(agents)
 
 
 agents.forEach(agent => {
-  outEl.innerHTML += `
-  <h2>${agent.fullName.nameFirst} ${agent.fullName.nameLast}</h2>
+    outEl.innerHTML += `
+  <h2>${agent.fullName}</h2>
   <h4>${agent.company}</h4>
   <h4>${agent.phoneNumber}</h4>`;
-  outEl.innerHTML += "<hr/>";
+    outEl.innerHTML += "<hr/>";
 });
 
